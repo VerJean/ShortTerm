@@ -10,4 +10,6 @@ module.exports = app => {
   router.post('/user', controller.user.create);//表单验证
   router.get('/ccc',controller.comment.index);
   router.redirect('/','/ccc', 302);//重定向-页面跳转
+  router.get('/test/:id',controller.user.info);
+  
 };
