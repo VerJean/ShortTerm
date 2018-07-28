@@ -4,29 +4,29 @@ const Controller = require('egg').Controller;
 
 class UserController extends Controller {
 
-  constructor(ctx) {
+  constructor(ctx) {//初始化类
     super(ctx);
-    this.session = ctx.session;
-    this.userService = ctx.service.userService;
+    this.session = ctx.session;//将session赋值给该实例，session存储用户数据
+    this.userService = ctx.service.userService;//将上下文中service赋值给该实例，方便调用
   }
   async login() {
-    this.ctx.validate({
+    this.ctx.validate({//验证body（请求体）中的数据格式是否符合要求
       account: { type: 'string'},
       password: { type: 'string', min: 8, max: 20 },
       rememberMe: { type: 'boolean', required: false },
     });
-    const {
+    const {//把下面3个值从请求体中取出来
       account,
       password,
       rememberMe,
     } = this.ctx.request.body;
-    const response = await this.userService.login(account, password);
-    if (response.error) this.ctx.status = 403;
-    if (!response.error && rememberMe) this.ctx.session.maxAge = ms('30d');
-    this.ctx.body = response;
+    const response = await this.userService.login(account, password);//调用Login方法，并把返回值赋值给response
+    if (response.error) this.ctx.status = 403;//判断是否有错误
+    if (!response.error && rememberMe) this.ctx.session.maxAge = ms('30d');//把用户有效时间设置30天
+    this.ctx.body = response;//设置响应体
   }
   async logout() {
-    this.ctx.session = null;
+    this.ctx.session = null//清除用户数据session
     this.ctx.body = '退出成功';
   }
   async register() {
@@ -68,7 +68,7 @@ class UserController extends Controller {
     this.ctx.body = response;
   }
   async getUserInfo() {
-    const uid = this.ctx.params.uid;
+    const uid = this.ctx.params.uid;//从url拿取数据
     const response = await this.userService.getUserInfo(uid);
     if(response.error) this.ctx.state = 404;
     this.ctx.body = response;
