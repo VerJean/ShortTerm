@@ -565,27 +565,68 @@
 
 ## 4.1 post /user/login
 
-   * description:
+  - 接口地址 /user/login
 
-   * request:
+  - 请求方法:post
 
-   * response:
+  - 请求参数:
+  
+  
+    * body
+        
+        参数名称 | 必需 | 类型   | 描述
+        -------|------|--------|--------------
+        account | 是   | string | 用户名
+        password | 是   | string | 密码
+        rememberMe | 是   | boolean | 是否记住
+        
+   
+  - 响应参数
 
-## 4.2 get /user/
+      参数名称 | 必需 | 类型   | 描述
+      --------|------|---------|----------------
+      status  | 是   | boolean | 判断相应状态
 
-   * description:
+## 4.2 get /user/logout
 
-   * request:
+  - 接口地址 /user/logout
 
-   * response:
-    
+  - 请求方法:get
+
+  - 请求参数: 
+   
+  - 响应参数
+
+      参数名称 | 必需 | 类型   | 描述
+      --------|------|---------|----------------
+      status  | 是   | boolean | 判断相应状态
+  
+
 ## 4.3 post /user/register
 
-   * description:
+   - 接口地址 /user/register
 
-   * request:
+  - 请求方法:post
 
-   * response:
+  - 请求参数:
+  
+  
+    * body
+        
+        参数名称 | 必需 | 类型   | 描述
+        -------|------|--------|--------------
+        account | 是   | string | 用户名
+        password | 是   | string | 密码
+        nickname | 是   | string | 昵称
+        avatar | 是   | string | 头像
+        signature | 是   | string | 签名
+        
+   
+  - 响应参数
+
+      参数名称 | 必需 | 类型   | 描述
+      --------|------|---------|----------------
+      status  | 是   | boolean | 判断相应状态
 
 ## 4.4 put /user/resetPassword
 
